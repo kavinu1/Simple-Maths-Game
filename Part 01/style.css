@@ -1,0 +1,17 @@
+body {
+  margin: 20px;
+}
+
+.correct {
+  color: green;
+  font-weight: bold;
+}
+
+.incorrect {
+  color: red;
+  font-weight: bold;
+}
+
+.question-block {
+  margin-bottom: 10px;
+}
