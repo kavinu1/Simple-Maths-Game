@@ -10,11 +10,18 @@
         text-align: center;
         margin-top: 50px;
       }
-      button {
+      .game-link {
+        display: inline-block;
         padding: 10px 20px;
         margin: 20px;
         font-size: 16px;
-        cursor: pointer;
+        text-decoration: none;
+        color: #fff;
+        background-color: #007bff;
+        border-radius: 5px;
+      }
+      .game-link:hover {
+        background-color: #0056b3;
       }
     </style>
   </head>
@@ -23,11 +30,12 @@
 
     <p>Select a part to play:</p>
 
-    <button onclick="window.location.href='./Part 01/index.html'">
+    <a href="./Part 01/index.html" target="_blank" class="game-link">
       Math Game Part 1
-    </button>
-    <button onclick="window.location.href='./Part 02/index.html'">
+    </a>
+
+    <a href="./Part 02/index.html" target="_blank" class="game-link">
       Math Game Part 2
-    </button>
+    </a>
   </body>
 </html>
