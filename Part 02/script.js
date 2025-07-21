@@ -1,34 +1,53 @@
-var score = 0;
+function startGame() {
+  let score = 0;
 
-for (var i = 1; i <= 10; i++) {
-  var x = Math.floor(Math.random() * 101);
-  var y = Math.floor(Math.random() * 101);
-  var ops = ["+", "-", "*"];
-  var op = ops[Math.floor(Math.random() * 3)];
-  var correct;
+  for (let i = 1; i <= 10; i++) {
+    const x = Math.floor(Math.random() * 101);
+    const y = Math.floor(Math.random() * 101);
+    const ops = ["+", "-", "*"];
+    const op = ops[Math.floor(Math.random() * ops.length)];
 
-  if (op == "+") correct = x + y;
-  if (op == "-") correct = x - y;
-  if (op == "*") correct = x * y;
+    let correct;
+    switch (op) {
+      case "+":
+        correct = x + y;
+        break;
+      case "-":
+        correct = x - y;
+        break;
+      case "*":
+        correct = x * y;
+        break;
+    }
 
-  var ans = parseInt(prompt("Q" + i + ": " + x + " " + op + " " + y + " = ?"));
+    let ans;
+    do {
+      ans = prompt(`Question 0${i}: ${x} ${op} ${y} = ?`);
+    } while (ans === null || ans.trim() === "" || isNaN(ans));
 
-  document.getElementById("question" + i).textContent = x + " " + op + " " + y;
-  document.getElementById("answer" + i).textContent = ans;
+    ans = Number(ans.trim());
 
-  var f = document.getElementById("feedback" + i);
-  if (ans == correct) {
-    f.innerHTML = "&checkmark;";
-    f.className = "correct";
-    score++;
+    document.getElementById(`question${i}`).textContent = `${x} ${op} ${y}`;
+    document.getElementById(`answer${i}`).textContent = ans;
+
+    const f = document.getElementById(`feedback${i}`);
+    if (ans === correct) {
+      f.innerHTML = "&checkmark;";
+      f.className = "correct";
+      score += 10;
+    } else {
+      f.innerHTML = `&cross; correct: ${correct}`;
+      f.className = "incorrect";
+    }
+  }
+
+  document.getElementById("score").textContent = `${score}/100`;
+
+  if (score < 20) {
+    document.body.style.backgroundColor = "lightcoral";
+  } else if (score < 50) {
+    document.body.style.backgroundColor = "lightyellow";
   } else {
-    f.innerHTML = "&cross; correct: " + correct;
-    f.className = "incorrect";
+    document.body.style.backgroundColor = "lightgreen";
   }
 }
-
-document.getElementById("score").textContent = score + "/10";
-
-if (score < 2) document.body.style.backgroundColor = "lightcoral";
-else if (score < 5) document.body.style.backgroundColor = "lightyellow";
-else document.body.style.backgroundColor = "lightgreen";
